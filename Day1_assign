@@ -1,0 +1,81 @@
+SQL> create table stock
+  2  (
+  3  orderName int,
+  4  Product varchar(20),
+  5  ProductQuantity int,
+  6  ProductPrice int,
+  7  ProductDelivery DATE
+  8  );
+
+Table created.
+
+SQL> create table sales
+  2  (
+  3  orderNo int,
+  4  ProductName varchar(20),
+  5  ProductQty int,
+  6  Profit int,
+  7  Delivery DATE
+  8  );
+
+Table created.
+
+SQL> insert into stock values(1,'printer',2,50000,current_timestamp);
+
+1 row created.
+
+SQL> insert into stock values(2,'moniter',3,5000,current_timestamp);
+
+1 row created.
+
+SQL> select * from stock;
+
+ ORDERNAME PRODUCT              PRODUCTQUANTITY PRODUCTPRICE PRODUCTDE
+---------- -------------------- --------------- ------------ ---------
+         1 printer                            2        50000 26-APR-21
+         2 moniter                            3         5000 26-APR-21
+
+SQL> insert into sales values(1,'printer',2,26000,current_timestamp);
+
+1 row created.
+
+SQL> insert into sales values(2,'printer',3,26000,current_timestamp);
+
+1 row created.
+
+SQL> select * from sales;
+
+   ORDERNO PRODUCTNAME          PRODUCTQTY     PROFIT DELIVERY
+---------- -------------------- ---------- ---------- ---------
+         1 printer                       2      26000 26-APR-21
+         2 printer                       3      26000 26-APR-21
+
+SQL> select to_char(sysdate,'dd-mm-yyyy hh:mi:ss') from dual;
+
+TO_CHAR(SYSDATE,'DD
+-------------------
+26-04-2021 09:44:26
+
+SQL> select sysdate from dual;
+
+SYSDATE
+---------
+26-APR-21
+
+SQL> select to_char(sysdate,'dd/mm/yyyy') from dual;
+
+TO_CHAR(SY
+----------
+26/04/2021
+
+SQL> select to_char(sysdate,'DAY') from dual;
+
+TO_CHAR(SYSDATE,'DAY')
+------------------------------------
+MONDAY
+
+SQL> select to_char(sysdate+10) from dual;
+
+TO_CHAR(SYSDATE+10
+------------------
+06-MAY-21
