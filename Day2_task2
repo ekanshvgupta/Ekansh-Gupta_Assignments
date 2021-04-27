@@ -1,0 +1,14 @@
+SQL> create table time_table
+  2   (
+  3   day varchar(10),
+  4   ses int,
+  5   faculty varchar(20),
+  6   sem int,
+  7   room varchar(3),
+  8   subject varchar(10),
+  9   unique(day,ses,faculty),
+ 10   unique(day,ses,room),
+ 11   unique(day,ses,sem)
+ 12   );
+
+Table created.
