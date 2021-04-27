@@ -1,0 +1,190 @@
+//create table Employee.
+SQL> create table Employee
+  2  (
+  3  EmpFName varchar(20),
+  4  EmpMName varchar(20),
+  5  EmpLastName varchar(20),
+  6  EmpAge int check(EmpAge>0 and EmpAge<50),
+  7  EmpCity varchar(20) check(EmpCity like 'B%'),
+  8  EmpDesignation varchar(20) check(EmpDesignation like '%_manager'),
+  9  EmpId char(5) primary key check(EmpId like 'emp__'),
+ 10  empDOB DATE
+ 11  );
+
+Table created.
+
+//inserting values in the table for 5 rows.
+
+SQL> insert into Employee values('Ekansh','Vibhav','Gupta',22,'Bangalore','Branch manager','emp02','05-JUL-98');
+
+1 row created.
+
+SQL> insert into Employee values('Sauvik','','Sarkar',21,'Bangalore','Sales manager','emp03','21-APR-99');
+
+1 row created.
+
+SQL> insert into Employee values('Shakshi','','Sharma',21,'Bandra','Application manager','emp01','11-APR-99');
+
+1 row created.
+
+SQL> insert into Employee values('Akash','','Pandey',21,'Bandra','Testing manager','emp04','11-FEB-99');
+
+1 row created.
+
+SQL> insert into Employee values('Ajay','Kumar','Yadav',23,'Bhubaneshwar','Advertising manager','emp05','12-MAR-97');
+
+1 row created.
+
+SQL> select * from Employee;
+
+EMPFNAME             EMPMNAME             EMPLASTNAME              EMPAGE
+-------------------- -------------------- -------------------- ----------
+EMPCITY              EMPDESIGNATION       EMPID EMPDOB
+-------------------- -------------------- ----- ---------
+Ekansh               Vibhav               Gupta                        22
+Bangalore            Branch manager       emp02 05-JUL-98
+
+Sauvik                                    Sarkar                       21
+Bangalore            Sales manager        emp03 21-APR-99
+
+Shakshi                                   Sharma                       21
+Bandra               Application manager  emp01 11-APR-99
+
+
+EMPFNAME             EMPMNAME             EMPLASTNAME              EMPAGE
+-------------------- -------------------- -------------------- ----------
+EMPCITY              EMPDESIGNATION       EMPID EMPDOB
+-------------------- -------------------- ----- ---------
+Akash                                     Pandey                       21
+Bandra               Testing manager      emp04 11-FEB-99
+
+Ajay                 Kumar                Yadav                        23
+Bhubaneshwar         Advertising manager  emp05 12-MAR-97
+
+//updating the EmpCity for one employee.
+
+SQL> update Employee set EmpCity='Bangkok' where EmpId='emp02';
+
+1 row updated.
+
+SQL> select * from Employee;
+
+EMPFNAME             EMPMNAME             EMPLASTNAME              EMPAGE
+-------------------- -------------------- -------------------- ----------
+EMPCITY              EMPDESIGNATION       EMPID EMPDOB
+-------------------- -------------------- ----- ---------
+Ekansh               Vibhav               Gupta                        22
+Bangkok              Branch manager       emp02 05-JUL-98
+
+Sauvik                                    Sarkar                       21
+Bangalore            Sales manager        emp03 21-APR-99
+
+Shakshi                                   Sharma                       21
+Bandra               Application manager  emp01 11-APR-99
+
+
+EMPFNAME             EMPMNAME             EMPLASTNAME              EMPAGE
+-------------------- -------------------- -------------------- ----------
+EMPCITY              EMPDESIGNATION       EMPID EMPDOB
+-------------------- -------------------- ----- ---------
+Akash                                     Pandey                       21
+Bandra               Testing manager      emp04 11-FEB-99
+
+Ajay                 Kumar                Yadav                        23
+Bhubaneshwar         Advertising manager  emp05 12-MAR-97
+
+//deleting one employee details.
+
+SQL> delete from Employee where EmpId='emp03';
+
+1 row deleted.
+
+SQL> commit;
+
+Commit complete.
+
+SQL> select * from Employee;
+
+EMPFNAME             EMPMNAME             EMPLASTNAME              EMPAGE
+-------------------- -------------------- -------------------- ----------
+EMPCITY              EMPDESIGNATION       EMPID EMPDOB
+-------------------- -------------------- ----- ---------
+Ekansh               Vibhav               Gupta                        22
+Bangkok              Branch manager       emp02 05-JUL-98
+
+Shakshi                                   Sharma                       21
+Bandra               Application manager  emp01 11-APR-99
+
+Akash                                     Pandey                       21
+Bandra               Testing manager      emp04 11-FEB-99
+
+
+EMPFNAME             EMPMNAME             EMPLASTNAME              EMPAGE
+-------------------- -------------------- -------------------- ----------
+EMPCITY              EMPDESIGNATION       EMPID EMPDOB
+-------------------- -------------------- ----- ---------
+Ajay                 Kumar                Yadav                        23
+Bhubaneshwar         Advertising manager  emp05 12-MAR-97
+
+//deleting all remaining employee details.
+
+SQL> delete from Employee;
+
+4 rows deleted.
+
+//retrieving the last deleted employee details.
+
+SQL> rollback;
+
+Rollback complete.
+
+SQL> select * from Employee;
+
+EMPFNAME             EMPMNAME             EMPLASTNAME              EMPAGE
+-------------------- -------------------- -------------------- ----------
+EMPCITY              EMPDESIGNATION       EMPID EMPDOB
+-------------------- -------------------- ----- ---------
+Ekansh               Vibhav               Gupta                        22
+Bangalore            Branch manager       emp02 05-JUL-98
+
+Shakshi                                   Sharma                       21
+Bandra               Application manager  emp01 11-APR-99
+
+Akash                                     Pandey                       21
+Bandra               Testing manager      emp04 11-FEB-99
+
+
+EMPFNAME             EMPMNAME             EMPLASTNAME              EMPAGE
+-------------------- -------------------- -------------------- ----------
+EMPCITY              EMPDESIGNATION       EMPID EMPDOB
+-------------------- -------------------- ----- ---------
+Ajay                 Kumar                Yadav                        23
+Bhubaneshwar         Advertising manager  emp05 12-MAR-97
+
+//display employee  name and dob in(DD-MM-YYYY) format.
+
+SQL> select EmpFName||' '||EmpMName||' '||EmpLastName, to_char(empDOB,'DD-MM-YYYY') from Employee;
+
+EMPFNAME||''||EMPMNAME||''||EMPLASTNAME                        TO_CHAR(EM
+-------------------------------------------------------------- ----------
+Ekansh Vibhav Gupta                                            05-07-1998
+Shakshi  Sharma                                                11-04-1999
+Akash  Pandey                                                  11-02-1999
+Ajay Kumar Yadav                                               12-03-1997
+
+//display employee  name in following format. 
+       Fname   Mname    lname
+Ex:  Sachin  Ramesh  Tendulkar
+should be displayed as  S.R.Tendulkar  
+
+SQL> select substr(EmpFName,1,1)||'.'||substr(EmpMName,1,1)||'.'||EmpLastName as EmpName from Employee;
+
+EMPNAME
+------------------------------
+E.V.Gupta
+S..Sharma
+A..Pandey
+A.K.Yadav
+
+
+
