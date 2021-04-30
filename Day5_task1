@@ -1,0 +1,92 @@
+public class program
+{
+	void word(String str)
+	{
+		char[] ch=str.toCharArray();
+		System.out.println(ch);
+		for(char l:ch)
+		{
+			System.out.println("the characters are "+l);
+		}
+	}
+	String hasUpper(String data)
+	{
+	int ctr=0;
+	String t="";
+	char[] mywords=data.toCharArray();
+	for(int i=0;i<mywords.length;i++)
+	{
+	if(mywords[i]>='A' && mywords[i]<='Z')
+	{
+		ctr++;
+		t="yes";
+	break;
+	}
+	}
+	if(ctr==0)
+	t="no";
+	return t;
+	}
+	String hasNumber(String data)
+   {
+		String t2="";
+		char[] ch1=data.toCharArray();
+		for(int i=0;i<ch1.length;i++)
+		{
+			if(ch1[i]=='0'  || ch1[i]=='1' || ch1[i]=='2' || ch1[i]=='3' || ch1[i]=='4' || ch1[i]=='5' || ch1[i]=='6' || ch1[i]=='7' || ch1[i]=='8' || ch1[i]=='9')
+			{
+				t2="yes";
+				break;
+				}
+			else
+				t2="no";
+			}
+		return t2;
+		}
+
+	boolean isCapsOnly(String data)
+	{
+		int ctr=0;
+		boolean tf=false;
+		char[] ch2=data.toCharArray();
+		for(int i=0;i<ch2.length;i++)
+		{
+			if(ch2[i]>='A' && ch2[i]<='Z')
+			{
+				ctr++;
+				}
+			if(ctr==ch2.length)
+				tf=true;
+			else
+				tf=false;
+			}
+		return tf;
+		}
+	int countCaps(String data)
+	{
+		int count=0;
+		char[] ch3=data.toCharArray();
+	for(int i=0;i<ch3.length;i++)
+	{
+		if(ch3[i]>='A' && ch3[i]<='Z')
+		count++;
+		}
+	return count;
+	}
+	public static void main(String[] args)
+	{
+		program m=new program();
+		m.word("Ekansh");
+		String words="heLlo";
+		System.out.println(m.hasUpper(words));
+		String test="Say HellO 2 this WorlD ";
+		String str1=m.hasUpper(test);
+		String str2=m.hasNumber(test);
+		boolean bol=m.isCapsOnly(test);
+		int integ=m.countCaps(test);
+		System.out.println(str1);
+		System.out.println(str2);
+		System.out.println(bol);
+		System.out.println(integ);
+		}
+}
