@@ -1,0 +1,68 @@
+package assignment;
+
+public class Day5_2 
+{
+	boolean isEqual(char c1,char c2)
+		{
+			if(c1-c2==32 || c2-c1==32 || c1-c2==0 || c2-c1==0)
+			{
+				return true;
+			}
+			return false;
+		}
+
+		public static void main(String[] args) {
+			Day5_2 c = new Day5_2();
+			System.out.println(c.isEqual('b','B'));
+			System.out.println(c.isEqual('B','B'));
+			System.out.println(c.isEqual('C','b'));
+
+		}
+
+	}
+
+OUTPUT:-
+
+true
+true
+false
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+package assignment;
+
+public class Day5 {
+	boolean isEqual(String str1,String str2)
+	{
+		int i;
+		int count=0;
+		if(str1.length()==str2.length())
+		{
+			char[] ch1=str1.toCharArray();
+			char[] ch2=str2.toCharArray();
+			for(i=0;i<ch1.length;i++)
+			{
+				if(ch1[i]-ch2[i]==32 || ch2[i]-ch1[i]==32 || ch1[i]-ch2[i]==0 || ch2[i]-ch1[i]==0)
+				{
+					count+=1;
+				}
+			}
+			if(count==str1.length())
+			{
+				return true;
+			}
+			return false;
+		}
+		else
+		{
+			return false;
+		}
+
+	}
+	public static void main(String[] args) {
+		Day5 str = new Day5();
+		System.out.println(str.isEqual("HELLO","hello"));
+		}
+}
+
+OUTPUT:-
+
+true
